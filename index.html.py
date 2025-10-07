@@ -1,0 +1,50 @@
+import tkinter as tk
+from tkinter import messagebox
+
+data_guru = []
+
+def simpan_data():
+    nama = entry_nama.get()
+    nip = entry_nip.get()
+    mapel = entry_mapel.get()
+    alamat = entry_alamat.get()
+    if nama and nip and mapel and alamat:
+        data_guru.append({
+            "nama": nama,
+            "nip": nip,
+            "mapel": mapel,
+            "alamat": alamat
+        })
+        listbox.insert(tk.END, f"{nama} | {nip} | {mapel} | {alamat}")
+        entry_nama.delete(0, tk.END)
+        entry_nip.delete(0, tk.END)
+        entry_mapel.delete(0, tk.END)
+        entry_alamat.delete(0, tk.END)
+    else:
+        messagebox.showwarning("Input Salah", "Semua data harus diisi!")
+
+root = tk.Tk()
+root.title("Input Data Guru")
+
+tk.Label(root, text="Nama").grid(row=0, column=0)
+entry_nama = tk.Entry(root)
+entry_nama.grid(row=0, column=1)
+
+tk.Label(root, text="NIP").grid(row=1, column=0)
+entry_nip = tk.Entry(root)
+entry_nip.grid(row=1, column=1)
+
+tk.Label(root, text="Mata Pelajaran").grid(row=2, column=0)
+entry_mapel = tk.Entry(root)
+entry_mapel.grid(row=2, column=1)
+
+tk.Label(root, text="Alamat").grid(row=3, column=0)
+entry_alamat = tk.Entry(root)
+entry_alamat.grid(row=3, column=1)
+
+tk.Button(root, text="Simpan", command=simpan_data).grid(row=4, column=1)
+
+listbox = tk.Listbox(root, width=50)
+listbox.grid(row=5, columnspan=2)
+
+root.mainloop()
