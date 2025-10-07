@@ -1,50 +1,41 @@
-import tkinter as tk
-from tkinter import messagebox
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulir Input Data Guru</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-data_guru = []
+    <h2>Formulir Data Guru</h2>
 
-def simpan_data():
-    nama = entry_nama.get()
-    nip = entry_nip.get()
-    mapel = entry_mapel.get()
-    alamat = entry_alamat.get()
-    if nama and nip and mapel and alamat:
-        data_guru.append({
-            "nama": nama,
-            "nip": nip,
-            "mapel": mapel,
-            "alamat": alamat
-        })
-        listbox.insert(tk.END, f"{nama} | {nip} | {mapel} | {alamat}")
-        entry_nama.delete(0, tk.END)
-        entry_nip.delete(0, tk.END)
-        entry_mapel.delete(0, tk.END)
-        entry_alamat.delete(0, tk.END)
-    else:
-        messagebox.showwarning("Input Salah", "Semua data harus diisi!")
+    <form action="proses_data.php" method="POST">
+        <label for="nama">Nama Lengkap:</label>
+        <input type="text" id="nama" name="nama"><br><br>
 
-root = tk.Tk()
-root.title("Input Data Guru")
+        <label for="nip">NIP:</label>
+        <input type="text" id="nip" name="nip"><br><br>
 
-tk.Label(root, text="Nama").grid(row=0, column=0)
-entry_nama = tk.Entry(root)
-entry_nama.grid(row=0, column=1)
+        <label for="tanggal_lahir">Tanggal Lahir:</label>
+        <input type="date" id="tanggal_lahir" name="tanggal_lahir"><br><br>
 
-tk.Label(root, text="NIP").grid(row=1, column=0)
-entry_nip = tk.Entry(root)
-entry_nip.grid(row=1, column=1)
+        <label>Jenis Kelamin:</label>
+        <input type="radio" id="laki" name="jenis_kelamin" value="Laki-laki">
+        <label for="laki">Laki-laki</label>
+        <input type="radio" id="perempuan" name="jenis_kelamin" value="Perempuan">
+        <label for="perempuan">Perempuan</label><br><br>
 
-tk.Label(root, text="Mata Pelajaran").grid(row=2, column=0)
-entry_mapel = tk.Entry(root)
-entry_mapel.grid(row=2, column=1)
+        <label for="alamat">Alamat:</label>
+        <textarea id="alamat" name="alamat"></textarea><br><br>
 
-tk.Label(root, text="Alamat").grid(row=3, column=0)
-entry_alamat = tk.Entry(root)
-entry_alamat.grid(row=3, column=1)
+        <label for="mata_pelajaran">Mata Pelajaran:</label>
+        <select id="mata_pelajaran" name="mata_pelajaran">
+            <option value="Matematika">Matematika</option>
+            <option value="IPA">IPA</option>
+            <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+        </select><br><br>
 
-tk.Button(root, text="Simpan", command=simpan_data).grid(row=4, column=1)
+        <input type="submit" value="Simpan">
+    </form>
 
-listbox = tk.Listbox(root, width=50)
-listbox.grid(row=5, columnspan=2)
-
-root.mainloop()
+</body>
+</html>
